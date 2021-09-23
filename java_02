@@ -1,0 +1,180 @@
+package src;
+import java.util.Scanner;
+
+//// 定义一个猫类
+//class Cat{
+//	// 属性、成员变量、字段
+//	String name;
+//	int age;
+//	String color;
+//}
+//public class Test{
+//	public static void main(String[] args) {
+//		/*
+//		 * 张老太有两只猫，一只小白（3岁，白色）,一只小花（100岁，花色）
+//		 * 要求输入猫的名字时，显示出相应信息，没有则显示 没有这只猫
+//		 */
+//		Cat cat1 = new Cat();// 创建一只猫cat1
+//		Cat cat2 = new Cat();// 创建一只猫cat2
+//		cat1.name = "小白";
+//		cat1.age = 3;
+//		cat1.color = "白色";
+//		cat2.name = "小花";
+//		cat2.age = 100;
+//		cat2.color = "花色";
+//		System.out.println("第一只猫信息："+" "+cat1.name+" "+cat1.age+" "+cat1.color);
+//		Cat cat3 = cat1;//  将cat1的地址赋给cat3
+//		cat3.age = 45;// 根据地址找到cat1.age的值，并改变
+//		cat3 = null;// cat3里面存放的是指向cat1对象的地址，地址置空，则cat3找不到相对应的内容
+//		System.out.print(cat1.age);//50
+//	}
+//}
+
+
+//// 成员方法、方法
+//class Person{
+//	String name;
+//	int age;
+//	public void speak() {
+//		System.out.println("我是个好人");
+//	}
+//	public void cal02(int n) { // n为形参
+//		int set = 0;
+//		for(int i=1;i<=n;i++) {
+//			set += i;
+//		}
+//		System.out.println(set);
+//	}
+//}
+//public class Test{
+//	public static void main(String[] args) {
+//		Person p1 = new Person();
+//		p1.speak();
+//		int n = 45;
+//		p1.cal02(n);
+//	}
+//}
+
+
+
+//// ..递归....
+//public class Test{
+//	public static void main(String[] args) {
+//		T t1 = new T();
+//		System.out.println(t1.fibonacci(7));
+//		System.out.println(t1.peach(4));
+//	}
+//}
+//class T{
+	// .....方法1.....
+//	public void test(int n) {
+//		if(n>2) {
+//			test(n-1);
+//		}
+//		System.out.println("n = "+n);
+
+    // 2.阶乘
+//	public int factorial(int n) {
+//		 if(n == 1) {
+//			 return 1;
+//		 }else {
+//			 return factorial(n-1)*n;
+//		 }
+//	}
+	
+	//  3.求斐波那契数列
+//	public int fibonacci(int n) {
+//		if(n == 1 || n == 2) {
+//			return 1;
+//		}
+//		else {
+//			return fibonacci(n-1)+fibonacci(n-2);
+//		}
+//	}
+	
+//	//  4.猴子吃桃子  
+//	public int peach(int day) {
+//		if(day == 10) return 1;
+//		else return (peach(day+1)+1)*2;
+//	}
+//}	
+
+
+	//  5.老鼠出迷宫
+//public class Test{
+//	public static void main(String[] args) {
+//		int map[][]=new int[8][7];//迷宫  1表示可以走，0表示不能走
+//		for(int i=0;i<7;i++) {
+//			map[0][i]=1;
+//			map[7][i]=1;
+//		}
+//		for(int i=0;i<8;i++) {
+//			map[i][0]=1;
+//			map[i][6]=1;
+//		}
+//		map[3][1] = 1;
+//		map[3][2] = 1;
+//		T t1 = new T();
+//		t1.findway(map, 1, 1);
+//		System.out.println("=======当前地图情况=======");
+//		for(int i=0;i<map.length;i++) {
+//			for(int j=0;j<map[i].length;j++) {
+//				System.out.print(map[i][j]+" ");
+//			}
+//			System.out.println();
+//		}
+//	}
+//}
+//class T{
+//	/*
+//	 * findway方法找迷宫路径，如果找到，返回ture,否则返回false
+//	 * map表示地图
+//	 * 递归找路
+//	 * 规定map：0代表可以走，1代表障碍物,2代表走过(不往回走),3代表不能走
+//	 * 当map[6][5]=2时，表示找到
+//	 */
+//	public boolean findway(int map[][],int i,int j) {
+//		if(map[6][5] == 2) {// 已经找到
+//			return true;
+//		}else if(map[i][j] == 0) {
+//			map[i][j] = 2;
+//			if(findway(map,i-1,j)) {//  向shang走
+//				return true;
+//			}else if(findway(map,i,j+1)) {// 向you走 
+//				return true;
+//			}else if(findway(map,i+1,j)) {// 向xia走
+//				return true;
+//			}else if(findway(map,i,j-1)) {// 向左走
+//				return true;
+//			}else {
+//				map[i][j] = 3;
+//				return false;
+//			}
+//		}
+//		else return false;
+//	}
+//}
+
+
+//  汉诺塔.....
+public class Test{
+	public static void main(String[] args) {
+		T t1 = new T();
+		t1.moving(1, 'A', 'B','C');
+	}
+}
+class T{               //  盘的数量         a柱             b柱            c柱  
+	public void moving(int num,char a,char b,char c) {
+		if(num == 1) {
+			System.out.println(a+"->"+c);
+		}
+		else {
+			moving(num-1,a,c,b);
+			System.out.println(a+"->"+c);
+			moving(num-1,b,a,c);
+			System.out.println(b+"->"+a);
+		}
+	}
+}
+
+
